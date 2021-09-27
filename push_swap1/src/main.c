@@ -1,5 +1,41 @@
 #include "push_swap.h"
 
+long double	calc_median(t_element *a, int n) //калькулятор медианы
+{
+	t_element	*temp; //временный файл
+	long double	median; //середина упорядоченного ряда
+	int 		i; //счётчик
+	long double	n_long;
+
+	i = 0;
+	temp = 0;
+	median = 0;
+	n_long = (long double) n;
+	while (i < n)
+	{
+		median = median + temp->val;
+	}
+}
+
+int quick_high_to_b(t_element **a, t_element **b, int n)
+{
+	int 		i; //счётчик
+	int 		top_half_len; //верхняя половина стэка
+	long double	median; //середина упорядоченного ряда
+	long double	a_val;
+
+	median = calc_median(*a, n);
+}
+
+void quicksort(int n, t_element **a, t_element **b) //сортировка чисел делением стэка на 2
+{
+	int	top_half_len;
+
+	if (n <= 1)
+		return;
+	top_half_len = quick_high_to_b(a, b, n); //отправляем число и 2 стэка
+}
+
 int len_elem(t_element *list) //считает количество элементов в списке
 {
 	int 		i;
@@ -33,6 +69,43 @@ int is_sort(t_element *a)
 			return (0);
 		return (1);
 	}
+}
+
+void	my_putchar(char c) //функция посимвольного вывода
+{
+	if (c != 0)
+		write(1, &c, 1);
+}
+
+void	my_putstr(char str) //функция вывода строки
+{
+	int i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			my_putchar(str[i]);
+			i++;
+		}
+	}
+}
+
+void my_put_nbr(int i)
+{
+	if (i < 0)
+	{
+		my_putchar('-');
+		i = -i;
+	}
+	if (i > 9)
+	{
+		my_put_nbr(i / 10);
+		my_put_nbr(i % 10);
+	}
+	else
+		my_putchar(i + 48;)
 }
 
 void my_putchar_error(char c) //выводит символы
@@ -174,4 +247,7 @@ int main(int num, char **argv)
 	is_letter = 0;
 	a = arg_to_list(argc, argv, &numneg, &is_letter); // переводим аргументы в список
 	if (error_msg(a, is_letter, num) == 84) //обработка ошибок
+		return (84);
+	if (num <= 5000)
+		quicksort(len_elem(a), &a, &b);
 }
