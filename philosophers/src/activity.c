@@ -34,6 +34,16 @@ void left_handed(t_philos *philos)
 	pthread_mutex_lock(&philos->info->mutex_msg);
 	print_status(philos, "has taken a fork");
 	pthread_mutex_unlock(&philos->info->mutex_msg);
+	if (philos->num == 1)
+	{
+		pthread_mutex_unlock(philos->left_fork);
+		ft_usleep(philos->ttd);
+		return ;
+	}
+	pthread_mutex_lock(philos->right_fork);
+	pthread_mutex_lock(&philos->info->mutex_msg);
+	print_status(philos, "has taken a fork");
+	pthread_mutex_unlock(&philos->info->mutex_msg);
 	pthread_mutex_lock(&philos->info->mutex_msg);
 	print_status(philos, "is eating");
 	pthread_mutex_unlock(&philos->info->mutex_msg);
@@ -72,5 +82,5 @@ void activity(t_philos *philos)
 	print_status(philos, "is thinking");
 	pthread_mutex_unlock(&philos->info->mutex_msg);
 	if (philos->num % 2 != 0)
-		ft_usleep(10);
+		ft_usleep(100);
 }
