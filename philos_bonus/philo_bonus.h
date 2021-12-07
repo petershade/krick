@@ -10,7 +10,7 @@
 # include <errno.h>
 # include <semaphore.h>
 
-typedef struct s_philos	t_philos
+typedef struct s_philos	t_philos;
 
 typedef struct	s_info
 {
@@ -19,19 +19,19 @@ typedef struct	s_info
 	unsigned int 	time_to_eat;
 	unsigned int 	time_to_sleep;
 	unsigned int	time_start;
-	int 			num_meals;
-	int 			*meals;
+	int 			num_meals; //количество раз который должен поесть философ
+	int 			meals;
 	int 			stop;
 	sem_t			*sem_forks;
 	sem_t			*sem_msg;
 	sem_t			*sem_stop;
-	t_philos		*ph;
+	t_philos		*philos;
 	pid_t			*pids
 }					t_info;
 
 typedef struct s_philos
 {
-	t_info			*info;
+	t_info			*inf;
 	int 			id;
 	int 			num;
 	int 			count;
@@ -41,6 +41,9 @@ typedef struct s_philos
 	pid_t			*pid;
 }				t_philos;
 
-
+int 	info_init(int argc, char **argv, t_info *info);
+int		error_write(char *str);
+void	ft_semalloc(t_info *info);
+void 	philos_init(t_info *info, int	i);
 
 #endif

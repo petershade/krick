@@ -1,4 +1,26 @@
-#include "philo.h"
+#include "philo_bonus.h"
+
+int check_error(int argc, char **argv)
+{
+	int 	i;
+	int 	j;
+	long 	num;
+
+	i = 0;
+	while (++i < argc)
+	{
+		num = ft_atoi(argv[i]);
+		if (num > 2147483647 || num == 0)
+			return (-1);
+		j = -1;
+		while (argv[i][++j])
+		{
+			if (!ft_isdigit(argv[i][j]))
+				return (-1);
+		}
+	}
+	return (0);
+}
 
 int info_init(int argc, char **argv, t_info *info)
 {
@@ -16,18 +38,13 @@ int info_init(int argc, char **argv, t_info *info)
 	return (0);
 }
 
-void philos_init(t_philos *philos, t_info *info)
+void philos_init(t_info *info, int	i)
 {
-	int i;
-
-	i = 0;
 	while (i < info->num_philo)
 	{
-		philos[i].info = info;
-		philos[i].id = i + 1;
-		philos[i].num = info->num_philo;
-		philos[i].count = 0;
-		philos[i].num_meals = info->num_meals;
-		i++;
+		info->philos[i].info = info;
+		info->philos[i].id = i + 1;
+		info->philos[i].num_meals = 0;
+		info->philos[i].time_last_eat = time_get();
 	}
 }
