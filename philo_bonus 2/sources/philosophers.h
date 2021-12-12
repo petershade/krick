@@ -27,31 +27,31 @@ typedef struct s_philo	t_philo;
 
 typedef struct s_data
 {
-	int					cnt_of_ph;
-	int					tm_to_die;
-	int					tm_to_eat;
-	int					tm_to_sleep;
-	int					must_eat;
-	int					counter;
-	int					dead_flag;
-	t_philo				*ph;
-	long int			start_time;
-	pid_t				*pids_mas;
-	sem_t				*sem_frk;
+	int					cnt_of_ph; //количество философов
+	int					tm_to_die; //время для смерти
+	int					tm_to_eat; //время для еды
+	int					tm_to_sleep; //время для сна
+	int					must_eat; //количество раз который должен поесть философ
+	int					counter; //счётчик философов которые поели must_eat раз
+	int					dead_flag; //остановка
+	t_philo				*ph; //философ
+	long int			start_time; //начало жизни философов
+	pid_t				*pids_mas; //массив пидов
+	sem_t				*sem_frk; //семафоры
 	sem_t				*sem_wrt;
 	sem_t				*sem_dth;
 }						t_data;
 
 typedef struct s_philo
 {
-	int					ph_id;
-	int					eat_tm;
-	int					slp_tm;
-	int					cnt_eat;
-	long int			life;
-	t_data				*das;
-	pthread_t			thread;
-	pid_t				pid;
+	int					ph_id; //id философа
+	int					eat_tm; //время на поесть
+	int					slp_tm; //время на поспать
+	int					cnt_eat; //сколько раз поел философ
+	long int			life; //время последнего приёма пищи
+	t_data				*das; //ссылка на другую структуру
+	pthread_t			thread; //трэд для того чтобы проверять философов на смерть
+	pid_t				pid; //pid философа
 }						t_philo;
 
 long int	time_get(void);
