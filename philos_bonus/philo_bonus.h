@@ -35,12 +35,12 @@ typedef struct s_philos
 	int 			id;
 	int 			num;
 	int 			count;
-	int 			num_meals;
 	unsigned int 	time_last_eat;
 	pthread_t 		faucheuse;
 	pid_t			*pid;
 }				t_philos;
 
+void    ft_print(char *str, t_philos *philo)
 int 	info_init(int argc, char **argv, t_info *info);
 int		error_write(char *str);
 void	ft_semalloc(t_info *info);
