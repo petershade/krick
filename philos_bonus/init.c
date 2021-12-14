@@ -1,5 +1,10 @@
 #include "philo_bonus.h"
 
+int ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+
 int check_error(int argc, char **argv)
 {
 	int 	i;
@@ -40,11 +45,9 @@ int info_init(int argc, char **argv, t_info *info)
 
 void philos_init(t_info *info, int	i)
 {
-	while (i < info->num_philo)
-	{
-		info->philos[i].info = info;
+	// while (i < info->num_philo)
+	// {
 		info->philos[i].id = i + 1;
-		info->philos[i].num_meals = 0;
 		info->philos[i].time_last_eat = time_get();
-	}
+	// }
 }

@@ -7,6 +7,8 @@
 # include <string.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <sys/wait.h>
+# include <signal.h>
 # include <errno.h>
 # include <semaphore.h>
 
@@ -26,7 +28,7 @@ typedef struct	s_info
 	sem_t			*sem_msg;
 	sem_t			*sem_stop;
 	t_philos		*philos;
-	pid_t			*pids
+	pid_t			*pids;
 }					t_info;
 
 typedef struct s_philos
@@ -40,10 +42,24 @@ typedef struct s_philos
 	pid_t			*pid;
 }				t_philos;
 
-void    ft_print(char *str, t_philos *philo)
-int 	info_init(int argc, char **argv, t_info *info);
-int		error_write(char *str);
-void	ft_semalloc(t_info *info);
-void 	philos_init(t_info *info, int	i);
+int			error_write(char *str);
+int 		malloc_error(t_info *info);
+int			ft_life(t_info *info, int i);
+int			ft_semalloc(t_info *info);
+void		ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *s, int fd);
+int			ft_atoi2(long i, long a);
+int			ft_atoi(const char *str);
+long int	time_get(void);
+int 		ft_isdigit(int c);
+int 		check_error(int argc, char **argv);
+int 		info_init(int argc, char **argv, t_info *info);
+void 		philos_init(t_info *info, int	i);
+int 		check_death(t_philos *ph);
+void    	*ft_death(void *philo);
+void    	ft_print(char *str, t_philos *philo);
+void		ft_sleep(int time);
+void		ft_wait(t_info *info);
+void    	activity(t_philos *philo);
 
 #endif

@@ -1,8 +1,19 @@
 #include "philo_bonus.h"
 
-int check_death(t_philo *ph)
+int check_death(t_philos *ph)
 {
-    if (ph->num_philo > ph->inf->num_philo && ph->inf->)
+	if (ph->count > ph->inf->num_meals && ph->inf->num_meals != -1)
+		ph->inf->meals++;
+	if (ph->inf->time_to_die < time_get() - ph->time_last_eat)
+	{
+		sem_wait(ph->inf->sem_stop);
+		sem_wait(ph->inf->sem_msg);
+		printf("%ld Philo %d is died\n", time_get() - ph->time_last_eat, \
+		ph->id);
+		exit(1);
+		sem_post(ph->inf->sem_stop);
+	}
+	return (0);
 }
 
 void    *ft_death(void *philo)
