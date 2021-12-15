@@ -17,10 +17,10 @@ typedef struct s_philos	t_philos;
 typedef struct	s_info
 {
 	int 			num_philo;
-	unsigned int 	time_to_die;
-	unsigned int 	time_to_eat;
-	unsigned int 	time_to_sleep;
-	unsigned int	time_start;
+	long int		time_to_die;
+	long int		time_to_eat;
+	long int		time_to_sleep;
+	long int		time_start;
 	int 			num_meals; //количество раз который должен поесть философ
 	int 			meals;
 	int 			stop;
@@ -37,7 +37,7 @@ typedef struct s_philos
 	int 			id;
 	int 			num;
 	int 			count;
-	unsigned int 	time_last_eat;
+	long int 		time_last_eat;
 	pthread_t 		faucheuse;
 	pid_t			*pid;
 }				t_philos;
@@ -59,7 +59,7 @@ int 		check_death(t_philos *ph);
 void    	*ft_death(void *philo);
 void    	ft_print(char *str, t_philos *philo);
 void		ft_sleep(int time);
-void		ft_wait(t_info *info);
 void    	activity(t_philos *philo);
+void		ft_wait(t_info *info);
 
 #endif

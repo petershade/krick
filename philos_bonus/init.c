@@ -45,9 +45,9 @@ int info_init(int argc, char **argv, t_info *info)
 
 void philos_init(t_info *info, int	i)
 {
-	// while (i < info->num_philo)
-	// {
-		info->philos[i].id = i + 1;
-		info->philos[i].time_last_eat = time_get();
-	// }
+	info->philos[i].inf = info;
+	info->philos[i].count = 0;
+	info->philos[i].id = i + 1;
+	info->philos[i].time_last_eat = time_get();
+
 }

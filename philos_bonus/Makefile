@@ -10,7 +10,7 @@ OBJS		=	$(patsubst %.c,%.o,$(SRCS))
 
 CC			=	@gcc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 INCLUDES	=	philo_bonus.h
 

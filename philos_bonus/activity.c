@@ -2,11 +2,11 @@
 
 void    ft_print(char *str, t_philos *philo)
 {
-	unsigned int	time;
+	long int	time;
 
 	time = time_get() - philo->inf->time_start;
 	sem_wait(philo->inf->sem_msg);
-	printf("%u Philo %d %s\n", time, philo->id, str);
+	printf("%ld Philo %d %s\n", time, philo->id, str);
 	if (!philo->inf->stop)
 		sem_post(philo->inf->sem_msg);
 }
@@ -47,7 +47,10 @@ void	ft_wait(t_info *info)
 
 void    activity(t_philos *philo)
 {
+	// (void)philo;
+	// write(1, "12\n", 3);
 	sem_wait(philo->inf->sem_forks);
+	// write(1, "12\n", 3);
 	ft_print("has taken a fork", philo);
 	sem_wait(philo->inf->sem_forks);
 	ft_print("has taken a fork", philo);
